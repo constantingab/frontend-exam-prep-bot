@@ -3,16 +3,20 @@ const { webhookCallback } = require("grammy");
 
 module.exports = async (req, res) => {
   console.log("Received webhook:", req.method, req.url);
-  console.log("Request body:", req.body);
+
+  // Проверьте, что запрос это POST
+  if (req.method !== "POST") {
+    res.status(405).send("Method Not Allowed");
+    return;
+  }
 
   try {
-    if (req.method === "POST") {
-      await webhookCallback(bot, "https")(req, res);
-    } else {
-      res.status(405).send("Method Not Allowed");
-    }
+    // Запустите webhook обработку
+    await webhookCallback(bot, "https")(req, res);
   } catch (error) {
-    console.error("Error in webhook handler:", error);
-    res.status(500).send("Internal Server Error");
+    console.error("Error while processing webhook:", error);
+
+    // Если возникает ошибка, отправляем 500 статус с подробным сообщением
+    res.status(500).send("Internal Server Error: " + error.message);
   }
 };

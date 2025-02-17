@@ -1,0 +1,14 @@
+{
+  "name": "frontend-exam-prep-bot",
+  "version": "1.0.0",
+  "description": "Frontend exam prep bot for Vercel",
+  "main": "api/webhook.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "grammy": "^1.23.0",
+    "random-js": "^2.1.0"
+  }
+}

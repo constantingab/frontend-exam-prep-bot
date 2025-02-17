@@ -8,7 +8,7 @@
     }
   ],
   "functions": {
-    "api/bot.js": {
+    "api/webhook": {
       "memory": 1024,
       "maxDuration": 10
     }
